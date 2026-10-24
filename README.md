@@ -15,7 +15,7 @@
   - **جزئیات محصول (`/products/[id]`):** تصویر باکیفیت، نشان‌های قیمت نمونه، هشدار قانونی نسخه و دارو، راهنمای مصرف، شرایط نگهداری و محصولات مرتبط.
   - **درباره ما (`/about`):** معرفی ارزش‌ها، مجوزهای قانونی و مسئولین فنی داروخانه.
   - **خدمات داروخانه (`/services`):** تشریح خدمات مشاوره دارویی، استعلام موجودی و قوانین نسخه.
-  - **تماس با ما (`/contact`):** فرم ارتباطی تعاملی با اعتبارشسنجی سمت کاربر، ساعات کاری و نقشه موقعیت.
+  - **تماس با ما (`/contact`):** فرم ارتباطی تعاملی با اعتبارسنجی سمت کاربر، ساعات کاری و نقشه موقعیت.
   - **پرسش‌های متداول (`/faq`):** آکاردئون دسته‌بندی‌شده سوالات متداول با قابلیت جست‌وجو.
   - **صفحه عدم یافت (`/not-found`):** طراحی اختصاصی Not Found هماهنگ با هویت بصری سایت.
 
@@ -23,43 +23,30 @@
 
 ## 🛠️ فناوری‌ها و پشته فنی
 
-- **فریم‌ورک اصلی:** [Next.js 15+](https://nextjs.org) (App Router)
-- **کتابخانه UI:** [React 19](https://react.dev)
-- **زبان:** [TypeScript](https://www.typescriptlang.org) (با تنظیمات Strict)
-- **استایل‌دهی:** [Tailwind CSS v4](https://tailwindcss.com)
-- **فونت فارسی:** [Vazirmatn](https://fonts.google.com/specimen/Vazirmatn) (بارگذاری بومی از `next/font/google`)
-- **آیکون‌ها:** [Lucide React](https://lucide.dev)
+- **فریم‌ورک اصلی:** Next.js 16 (App Router)
+- **کتابخانه UI:** React 19
+- **زبان:** TypeScript (با تنظیمات Strict)
+- **استایل‌دهی:** Tailwind CSS v4
+- **فونت فارسی:** Vazirmatn (بارگذاری بومی از `next/font/google`)
+- **آیکون‌ها:** Lucide React
 
 ---
 
-## 📂 ساختار پوشه‌ها
+## 🚀 بررسی استقرار و میزبانی (GitHub Pages vs Node/Vercel)
 
+پروژه به گونه‌ای طراحی شده که هم قابلیت خروجی استاتیک (Static Export) برای میزبانی در **GitHub Pages** و هم قابلیت اجرا روی سرورهای Node.js یا **Vercel** را داراست:
+
+### ۱. استقرار در GitHub Pages (خروجی استاتیک)
+تمامی صفحات شامل مسیرهای پویا (`/products/[id]`) از طریق `generateStaticParams` به‌صورت ۱۰۰٪ استاتیک رندر می‌شوند. برای فعال‌سازی خروجی استاتیک جهت GitHub Pages کافیست در `next.config.ts` مقدار زیر تنظیم شود:
+```typescript
+const nextConfig: NextConfig = {
+  output: 'export',
+  images: { unoptimized: true },
+};
 ```
-/
-├── public/                 # فایل‌های استاتیک و تصاویر
-├── src/
-│   ├── app/                # صفحات App Router
-│   │   ├── about/          # صفحه درباره ما
-│   │   ├── contact/        # صفحه تماس با ما
-│   │   ├── faq/            # صفحه سوالات متداول
-│   │   ├── products/       # صفحه لیست و جزئیات محصولات ([id])
-│   │   ├── services/       # صفحه خدمات
-│   │   ├── globals.css     # تنظیمات Tailwind و متغیرهای رنگی
-│   │   ├── layout.tsx      # چیدمان اصلی و تنظیم فونت Vazirmatn
-│   │   ├── not-found.tsx   # صفحه اختصاصی ۴۰۴
-│   │   └── page.tsx        # صفحه اصلی
-│   ├── components/         # کامپوننت‌های فرانت‌اند
-│   │   ├── home/           # بخش‌های صفحه اصلی
-│   │   ├── layout/         # Header و Footer
-│   │   └── ui/             # کامپوننت‌های پایه UI
-│   ├── lib/
-│   │   ├── data/           # داده‌های آزمایشی (mock-data.ts)
-│   │   └── services/       # لایه انتزاع سرویس محصولات (product-service.ts)
-│   └── types/              # مدل‌های TypeScript (pharmacy.ts)
-├── next.config.ts          # تنظیمات Next.js
-├── package.json            # وابستگی‌ها و اسکریپت‌ها
-└── README.md               # مستندات پروژه
-```
+
+### ۲. استقرار روی Vercel / Netlify / Node Server (توصیه‌شده برای فازهای بعدی)
+در صورت اتصال به Supabase، سیستم احراز هویت، پیامک یا APIهای سمت سرور در فاز بعد، سرویس‌های ابری نظیر Vercel یا سرور Dockerized مناسب‌ترین گزینه خواهند بود.
 
 ---
 
@@ -99,13 +86,6 @@ pnpm start
 ## 🗄️ وضعیت اتصال به Supabase (معماری آینده)
 
 > **توجه مهم:** در مرحله فعلی، این پروژه به دیتابیس Supabase یا هیچ API خارجی متصل **نیست** و تمام داده‌ها از طریق لایه انتزاعی `src/lib/services/product-service.ts` و فایل داده محلی `src/lib/data/mock-data.ts` تامین می‌شوند.
-
-### راهنمای اتصال به Supabase در فاز بعدی:
-1. ایجاد یک پروژه جدید در Supabase.
-2. ایجاد جداول `products` و `categories` مطابق با تایپ‌های موجود در `src/types/pharmacy.ts`.
-3. نصب پکیج `@supabase/supabase-js`.
-4. قرار دادن `NEXT_PUBLIC_SUPABASE_URL` و `NEXT_PUBLIC_SUPABASE_ANON_KEY` در فایل `.env.local`.
-5. جایگزینی پیاده‌سازی متدهای `src/lib/services/product-service.ts` با کوئری‌های Supabase Client بدون نیاز به تغییر در کامپوننت‌های UI.
 
 ---
 
