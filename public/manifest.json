@@ -1,0 +1,23 @@
+{
+  "name": "داروخانه دکتر عبدوسی - DAP",
+  "short_name": "داروخانه عبدوسی",
+  "description": "سامانه خدمات تخصصی دارویی، ثبت نسخه آنلاین و مشاوره محصولات سلامت داروخانه دکتر عبدوسی",
+  "start_url": "/Dr_Abdousi_pharmacy/",
+  "display": "standalone",
+  "background_color": "#094032",
+  "theme_color": "#0d5c46",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "/Dr_Abdousi_pharmacy/images/dap-logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/Dr_Abdousi_pharmacy/images/dap-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -97,15 +97,19 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
           {/* Logo & Brand Emblem */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0d5c46] to-[#063d2e] flex items-center justify-center text-white shadow-md shadow-emerald-900/10 group-hover:scale-105 transition-transform duration-200">
-              <Cross className="w-6 h-6 stroke-[2.5]" />
+            <div className="w-12 h-12 rounded-xl overflow-hidden bg-white border border-emerald-100 shadow-md shadow-emerald-900/10 group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
+              <img
+                src="/Dr_Abdousi_pharmacy/images/dap-logo.jpg"
+                alt="لوگوی داروخانه دکتر عبدوسی DAP"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-slate-900 tracking-tight group-hover:text-[#0d5c46] transition-colors">
+              <span className="text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-[#0d5c46] transition-colors">
                 داروخانه دکتر عبدوسی
               </span>
               <span className="text-xs text-emerald-700 font-medium">
-                مرجع تخصصی مشاوره و سلامت
+                DR. ABDOOSI PHARMACY — DAP
               </span>
             </div>
           </Link>
@@ -134,8 +138,16 @@ export default function Header() {
           {/* Action Button & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <Link
+              href="/prescription"
+              className="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all border border-emerald-500/30"
+            >
+              <Cross className="w-4 h-4 text-emerald-200" />
+              <span>ثبت نسخه الکترونیک</span>
+            </Link>
+
+            <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#0d5c46] hover:bg-[#063d2e] text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all"
+              className="hidden md:inline-flex items-center gap-2 bg-[#0d5c46] hover:bg-[#063d2e] text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all"
             >
               <Stethoscope className="w-4 h-4 text-emerald-300" />
               <span>ارتباط و مشاوره</span>

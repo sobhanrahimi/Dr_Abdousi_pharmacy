@@ -41,9 +41,9 @@ export default function HeroSection() {
 
             {/* Main Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight lg:leading-[1.25]">
-              سلامت و آسودگی خاطر شما،{' '}
+              سلامت،{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-l from-emerald-300 via-teal-200 to-white">
-                تعهد حرفه‌ای ماست
+                زیباتر از همیشه
               </span>
             </h1>
 
@@ -76,18 +76,17 @@ export default function HeroSection() {
             {/* Quick Action CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
-                href="/products"
-                className="bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-emerald-500/20 flex items-center gap-2"
+                href="/prescription"
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-500/25 flex items-center gap-2 ring-2 ring-emerald-300/50"
               >
-                <span>مشاهده محصولات و مکمل‌ها</span>
+                <span>ثبت و ارسال نسخه آنلاین</span>
                 <ArrowLeft className="w-4 h-4" />
               </Link>
               <Link
-                href="/contact"
-                className="bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 text-sm font-medium px-6 py-3 rounded-xl transition-all flex items-center gap-2"
+                href="/products"
+                className="bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 text-sm font-medium px-6 py-3.5 rounded-xl transition-all flex items-center gap-2"
               >
-                <Stethoscope className="w-4 h-4 text-emerald-400" />
-                <span>دریافت مشاوره دارویی</span>
+                <span>مشاهده فروشگاه محصولات</span>
               </Link>
             </div>
 
