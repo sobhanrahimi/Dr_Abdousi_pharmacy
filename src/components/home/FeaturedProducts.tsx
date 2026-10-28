@@ -1,127 +1,165 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Star, ShieldAlert, CheckCircle2, ArrowUpRight } from 'lucide-react';
-import { mockProducts } from '@/lib/data/mock-data';
+import { Heart, ArrowLeft } from 'lucide-react';
 
 export default function FeaturedProducts() {
-  const featured = mockProducts.filter((p) => p.isFeatured).slice(0, 4);
+  const bestSellers = [
+    {
+      id: 'p-01',
+      name: 'مکمل ویتامین D3',
+      brand: 'DHC',
+      price: '۳۹۰,۰۰۰ تومان',
+      badge: 'بهداشتی طرفدار',
+      badgeColor: 'bg-[#006654] text-white',
+      image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800&auto=format&fit=crop',
+      href: '/products/p-01',
+    },
+    {
+      id: 'p-03',
+      name: 'کرم مرطوب‌کننده پوست',
+      brand: 'Vichy',
+      price: '۴۸۰,۰۰۰ تومان',
+      badge: 'پرفروش',
+      badgeColor: 'bg-emerald-600 text-white',
+      image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop',
+      href: '/products/p-03',
+    },
+    {
+      id: 'p-06',
+      name: 'محلول پاک‌کننده پوست',
+      brand: 'Bioderma',
+      price: '۳۹۰,۰۰۰ تومان',
+      badge: 'جامعه هدف',
+      badgeColor: 'bg-emerald-700 text-white',
+      image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop',
+      href: '/products/p-06',
+    },
+    {
+      id: 'p-02',
+      name: 'ژل شستشوی پوست',
+      brand: 'La Roche-Posay',
+      price: '۴۹۰,۰۰۰ تومان',
+      badge: 'پرفروش',
+      badgeColor: 'bg-[#006654] text-white',
+      image: 'https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=800&auto=format&fit=crop',
+      href: '/products/p-02',
+    },
+  ];
 
   return (
-    <section className="py-16 bg-slate-50 border-b border-slate-200">
+    <section className="py-10 bg-[#f8fcfb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-          <div className="space-y-2">
-            <span className="text-xs font-bold text-[#0d5c46] uppercase bg-emerald-100/80 px-3 py-1 rounded-full border border-emerald-200">
-              اقلام منتخب
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              محصولات و مکمل‌های مورد استقبال
-            </h2>
-            <p className="text-slate-600 text-sm">
-              نمونه کالاهای بهداشتی، تجهیزات و مکمل‌های موجود با برچسب نمونه داده
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+          {/* Left Side: Skincare Campaign Banner */}
+          <div className="lg:col-span-4 bg-gradient-to-br from-[#cbece2] via-[#e2f5f0] to-[#bde7dc] rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-emerald-200/80 shadow-xs min-h-[380px]">
+            {/* Decorative Skincare Image Background */}
+            <div className="absolute top-0 left-0 w-1/2 h-full opacity-20 pointer-events-none">
+              <img
+                src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop"
+                alt="Skincare Banner"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="relative z-10 space-y-4">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#006654] leading-tight">
+                زیبایی و سلامت پوست با بهترین محصولات
+              </h3>
+              <p className="text-xs font-semibold text-slate-600">
+                مراقبت حرفه‌ای، نتیجه ماندگار
+              </p>
+            </div>
+
+            <div className="relative z-10 pt-6">
+              <Link
+                href="/products?category=cat-skincare"
+                className="inline-flex items-center gap-2 bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-md"
+              >
+                <span>مشاهده محصولات</span>
+              </Link>
+            </div>
           </div>
 
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0d5c46] hover:text-[#063d2e] shrink-0"
-          >
-            <span>مشاهده همه محصولات</span>
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
-        </div>
+          {/* Right Side: Best Sellers Section & Product Cards */}
+          <div className="lg:col-span-8 flex flex-col justify-between space-y-6">
 
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featured.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col justify-between overflow-hidden group"
-            >
+            {/* Header */}
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200">
               <div>
-                {/* Image Container */}
-                <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
-                    <span className="text-[10px] font-bold bg-slate-900/80 backdrop-blur-md text-white px-2.5 py-1 rounded-full shadow">
-                      {product.categoryName}
-                    </span>
-                    {product.isSamplePrice && (
-                      <span className="text-[9px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded-md shadow">
-                        قیمت نمونه
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5 space-y-3">
-                  <div className="flex items-center justify-between text-xs text-slate-500">
-                    <span className="font-medium text-slate-600">{product.brand || 'اصیل'}</span>
-                    {product.rating && (
-                      <div className="flex items-center gap-1 text-amber-500">
-                        <Star className="w-3.5 h-3.5 fill-amber-400" />
-                        <span className="font-bold text-slate-800">{product.rating}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#0d5c46] transition-colors leading-snug line-clamp-2">
-                    {product.name}
-                  </h3>
-
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                    {product.summary}
-                  </p>
-                </div>
+                <h2 className="text-lg font-extrabold text-[#006654]">
+                  محصولات پرفروش
+                </h2>
+                <p className="text-xs text-slate-500">
+                  محصولاتی که بیشتر از همه انتخاب می‌شوند
+                </p>
               </div>
-
-              {/* Card Footer */}
-              <div className="p-5 pt-0 space-y-3">
-                <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-slate-400">قیمت تخمینی/آزمایشی</span>
-                    <span className="text-sm font-extrabold text-[#0d5c46]">
-                      {product.formattedPrice}
-                    </span>
-                  </div>
-
-                  <span
-                    className={`text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 ${
-                      product.isPrescriptionRequired
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-emerald-100 text-emerald-800'
-                    }`}
-                  >
-                    {product.isPrescriptionRequired ? (
-                      <>
-                        <ShieldAlert className="w-3 h-3" />
-                        <span>نسخه‌ای</span>
-                      </>
-                    ) : (
-                      <>
-                        <CheckCircle2 className="w-3 h-3" />
-                        <span>موجود</span>
-                      </>
-                    )}
-                  </span>
-                </div>
-
-                <Link
-                  href={`/products/${product.id}`}
-                  className="w-full bg-slate-100 hover:bg-[#0d5c46] text-slate-800 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-1.5"
-                >
-                  <span>مشاهده جزئیات</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+              <Link
+                href="/products"
+                className="text-xs font-bold text-[#006654] hover:text-[#004d3f] flex items-center gap-1 transition-colors group"
+              >
+                <span>مشاهده همه</span>
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              </Link>
             </div>
-          ))}
+
+            {/* 4 Best Seller Cards Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {bestSellers.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between relative group"
+                >
+                  {/* Top Badges & Wishlist Heart */}
+                  <div className="flex items-center justify-between w-full mb-2">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${item.badgeColor}`}>
+                      {item.badge}
+                    </span>
+                    <button
+                      className="p-1 text-slate-300 hover:text-rose-500 transition-colors"
+                      aria-label="افزودن به علاقه‌مندی"
+                    >
+                      <Heart className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Product Image */}
+                  <div className="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 mb-3 flex items-center justify-center p-2">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+
+                  {/* Info & Price */}
+                  <div className="text-center space-y-1 mb-3">
+                    <h4 className="text-xs font-bold text-slate-800 line-clamp-1">
+                      {item.name}
+                    </h4>
+                    <p className="text-[10px] text-slate-400 font-sans">
+                      {item.brand}
+                    </p>
+                    <p className="text-xs font-extrabold text-[#006654] pt-1">
+                      {item.price}
+                    </p>
+                  </div>
+
+                  {/* Add to Cart Button */}
+                  <Link
+                    href={item.href}
+                    className="w-full bg-[#006654] hover:bg-[#004d3f] text-white text-[11px] font-bold py-2 rounded-xl transition-colors text-center block"
+                  >
+                    افزودن به سبد خرید
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
         </div>
       </div>
     </section>
