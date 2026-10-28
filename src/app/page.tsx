@@ -6,6 +6,8 @@ import QuickServicesSection from '@/components/home/QuickServicesSection';
 import CategoryGrid from '@/components/home/CategoryGrid';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import AboutPreviewSection from '@/components/home/AboutPreviewSection';
+import AiAssistantSection from '@/components/home/AiAssistantSection';
+import TrackingAndClubSection from '@/components/home/TrackingAndClubSection';
 import TrustQualitySection from '@/components/home/TrustQualitySection';
 import FaqSection from '@/components/home/FaqSection';
 
@@ -18,6 +20,8 @@ export default function HomePage() {
         <QuickServicesSection />
         <CategoryGrid />
         <FeaturedProducts />
+        <AiAssistantSection />
+        <TrackingAndClubSection />
         <AboutPreviewSection />
         <TrustQualitySection />
         <FaqSection />
