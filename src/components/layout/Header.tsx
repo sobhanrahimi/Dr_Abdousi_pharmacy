@@ -1,39 +1,28 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
-  Phone,
-  Clock,
   Search,
+  ShoppingCart,
+  User,
   Menu,
   X,
-  Cross,
   ChevronLeft,
+  Home,
+  Package,
+  Layers,
   Stethoscope,
   Info,
-  Package,
-  Home,
-  HelpCircle,
-  MapPin,
+  PhoneCall,
 } from 'lucide-react';
-import { mockPharmacyInfo } from '@/lib/data/mock-data';
 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,12 +33,12 @@ export default function Header() {
   };
 
   const navItems = [
-    { name: 'خانه', href: '/', icon: Home },
+    { name: 'صفحه اصلی', href: '/', icon: Home },
     { name: 'محصولات', href: '/products', icon: Package },
-    { name: 'خدمات داروخانه', href: '/services', icon: Stethoscope },
-    { name: 'سوالات متداول', href: '/faq', icon: HelpCircle },
+    { name: 'دسته‌بندی‌ها', href: '/products', icon: Layers },
+    { name: 'مشاوره دارویی', href: '/services', icon: Stethoscope },
     { name: 'درباره ما', href: '/about', icon: Info },
-    { name: 'تماس با ما', href: '/contact', icon: MapPin },
+    { name: 'تماس با ما', href: '/contact', icon: PhoneCall },
   ];
 
   const isActive = (href: string) => {
@@ -58,150 +47,115 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-200">
-      {/* Top Announcement Bar */}
-      <div className="bg-[#063d2e] text-emerald-100 text-xs py-2 px-4 border-b border-emerald-800/50">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 text-emerald-200">
-              <Clock className="w-3.5 h-3.5 text-emerald-400" />
-              <span>ساعات کاری: {mockPharmacyInfo.workingHours.weekdays}</span>
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-emerald-100/80 shadow-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+        {/* Right Section: DAP Logo */}
+        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+          <div className="w-12 h-12 rounded-xl overflow-hidden bg-white border border-emerald-200 shadow-xs group-hover:scale-105 transition-transform duration-200">
+            <img
+              src="/Dr_Abdousi_pharmacy/images/dap-logo.jpg"
+              alt="لوگوی داروخانه دکتر عبدوسی DAP"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="hidden sm:flex flex-col">
+            <span className="text-xl font-extrabold text-[#006654] tracking-tight group-hover:text-[#004d3f] transition-colors">
+              داروخانه دکتر عبدوسی
             </span>
-            <span className="hidden md:flex items-center gap-1.5 text-emerald-200">
-              <Stethoscope className="w-3.5 h-3.5 text-emerald-400" />
-              <span>مشاوره دارویی: {mockPharmacyInfo.consultationPhone}</span>
+            <span className="text-[11px] font-semibold text-emerald-800 tracking-wider">
+              DR. ABDOOSI PHARMACY
             </span>
           </div>
+        </Link>
 
-          <div className="flex items-center gap-4 text-emerald-300">
-            <span className="hidden lg:inline bg-emerald-900/60 text-emerald-300 text-[11px] px-2.5 py-0.5 rounded-full border border-emerald-700/50">
-              تحت نظارت سازمان غذا و دارو - پروانه: {mockPharmacyInfo.licenseNumber}
-            </span>
-            <a
-              href={`tel:${mockPharmacyInfo.phone}`}
-              className="flex items-center gap-1 hover:text-white transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="font-sans text-[12px]">{mockPharmacyInfo.phone}</span>
-            </a>
-          </div>
-        </div>
-      </div>
+        {/* Center Section: Navigation Links & Search Bar */}
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-6 max-w-3xl mx-4">
+          {/* Main Nav Items */}
+          <nav className="flex items-center gap-1 shrink-0">
+            {navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-xs font-bold px-3 py-2 rounded-xl transition-all ${
+                    active
+                      ? 'text-[#006654] bg-emerald-50 font-extrabold'
+                      : 'text-slate-600 hover:text-[#006654] hover:bg-slate-50'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
 
-      {/* Main Header */}
-      <div
-        className={`bg-white/95 backdrop-blur-md border-b transition-all duration-200 ${
-          isScrolled ? 'shadow-md border-slate-200 py-3' : 'border-slate-200 py-4'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
-          {/* Logo & Brand Emblem */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-12 h-12 rounded-xl overflow-hidden bg-white border border-emerald-100 shadow-md shadow-emerald-900/10 group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
-              <img
-                src="/Dr_Abdousi_pharmacy/images/dap-logo.jpg"
-                alt="لوگوی داروخانه دکتر عبدوسی DAP"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-[#0d5c46] transition-colors">
-                داروخانه دکتر عبدوسی
-              </span>
-              <span className="text-xs text-emerald-700 font-medium">
-                DR. ABDOOSI PHARMACY — DAP
-              </span>
-            </div>
-          </Link>
-
-          {/* Central Search Bar (Desktop) */}
+          {/* Central Search Bar */}
           <form
             onSubmit={handleSearchSubmit}
-            className="hidden md:flex flex-1 max-w-md mx-4 relative"
+            className="relative flex-1 max-w-xs"
           >
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="جست‌وجوی کالا، مکمل یا برند..."
-              className="w-full bg-slate-100 border border-slate-200 focus:border-[#0d5c46] focus:bg-white text-slate-800 text-sm rounded-full py-2.5 pl-10 pr-4 outline-none transition-all placeholder:text-slate-400"
+              placeholder="جستجوی محصولات..."
+              className="w-full bg-slate-100/90 border border-slate-200 focus:border-[#006654] focus:bg-white text-slate-800 text-xs rounded-full py-2 pr-9 pl-3 outline-none transition-all placeholder:text-slate-400"
             />
             <button
               type="submit"
-              className="absolute left-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#0d5c46] hover:bg-[#063d2e] text-white flex items-center justify-center transition-colors"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#006654] transition-colors"
               aria-label="جست‌وجو"
             >
               <Search className="w-4 h-4" />
             </button>
           </form>
+        </div>
 
-          {/* Action Button & Mobile Toggle */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/prescription"
-              className="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all border border-emerald-500/30"
-            >
-              <Cross className="w-4 h-4 text-emerald-200" />
-              <span>ثبت نسخه الکترونیک</span>
-            </Link>
+        {/* Left Section: Cart & User Account */}
+        <div className="flex items-center gap-3 shrink-0">
+          <Link
+            href="/products"
+            className="relative w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100/80 text-[#006654] flex items-center justify-center transition-colors border border-emerald-200/60"
+            aria-label="سبد خرید"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            <span className="absolute -top-1 -right-1 bg-[#006654] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+              ۲
+            </span>
+          </Link>
 
-            <Link
-              href="/contact"
-              className="hidden md:inline-flex items-center gap-2 bg-[#0d5c46] hover:bg-[#063d2e] text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all"
-            >
-              <Stethoscope className="w-4 h-4 text-emerald-300" />
-              <span>ارتباط و مشاوره</span>
-            </Link>
+          <Link
+            href="/contact"
+            className="hidden sm:flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl border border-slate-200 transition-all shadow-2xs"
+          >
+            <User className="w-4 h-4 text-[#006654]" />
+            <span>ورود / ثبت نام</span>
+          </Link>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
-              aria-label="منوی موبایل"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          {/* Mobile Drawer Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+            aria-label="منوی موبایل"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Navigation Menu Bar (Desktop) */}
-      <nav className="hidden md:block bg-slate-900 text-slate-100 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <ul className="flex items-center gap-1 py-1">
-            {navItems.map((item) => {
-              const active = isActive(item.href);
-              const IconComponent = item.icon;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`flex items-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg transition-colors ${
-                      active
-                        ? 'bg-[#0d5c46] text-white shadow-sm'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800'
-                    }`}
-                  >
-                    <IconComponent className={`w-4 h-4 ${active ? 'text-emerald-300' : 'text-slate-400'}`} />
-                    <span>{item.name}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </nav>
-
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex justify-end">
+        <div className="lg:hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex justify-end">
           <div className="w-full max-w-xs bg-white h-full shadow-2xl flex flex-col p-5 overflow-y-auto">
-            {/* Drawer Header */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-lg bg-[#0d5c46] flex items-center justify-center text-white">
-                  <Cross className="w-5 h-5" />
-                </div>
-                <span className="font-bold text-slate-900 text-base">داروخانه دکتر عبدوسی</span>
+              <div className="flex items-center gap-2">
+                <img
+                  src="/Dr_Abdousi_pharmacy/images/dap-logo.jpg"
+                  alt="DAP Logo"
+                  className="w-8 h-8 rounded-lg object-cover"
+                />
+                <span className="font-bold text-slate-900 text-sm">داروخانه دکتر عبدوسی</span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -211,62 +165,40 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Search Input */}
-            <form onSubmit={handleSearchSubmit} className="mb-6 relative">
+            <form onSubmit={handleSearchSubmit} className="mb-4 relative">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="جست‌وجوی محصولات..."
-                className="w-full bg-slate-100 border border-slate-200 rounded-xl py-2.5 pl-10 pr-3 text-sm focus:outline-none focus:border-[#0d5c46]"
+                className="w-full bg-slate-100 border border-slate-200 rounded-xl py-2.5 pr-9 pl-3 text-xs focus:outline-none focus:border-[#006654]"
               />
-              <button
-                type="submit"
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 text-emerald-800"
-              >
-                <Search className="w-4 h-4" />
-              </button>
+              <Search className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
             </form>
 
-            {/* Mobile Nav Links */}
             <div className="flex flex-col gap-1 mb-6">
               {navItems.map((item) => {
                 const active = isActive(item.href);
                 const IconComponent = item.icon;
                 return (
                   <Link
-                    key={item.href}
+                    key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between p-3 rounded-xl text-sm font-medium transition-colors ${
+                    className={`flex items-center justify-between p-3 rounded-xl text-xs font-bold transition-colors ${
                       active
-                        ? 'bg-emerald-50 text-[#0d5c46] border border-emerald-200/60 font-semibold'
+                        ? 'bg-emerald-50 text-[#006654]'
                         : 'text-slate-700 hover:bg-slate-50'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <IconComponent className={`w-5 h-5 ${active ? 'text-[#0d5c46]' : 'text-slate-400'}`} />
+                      <IconComponent className={`w-4 h-4 ${active ? 'text-[#006654]' : 'text-slate-400'}`} />
                       <span>{item.name}</span>
                     </div>
                     <ChevronLeft className="w-4 h-4 text-slate-400" />
                   </Link>
                 );
               })}
-            </div>
-
-            {/* Mobile Contact Box */}
-            <div className="mt-auto pt-4 border-t border-slate-100 bg-slate-50 p-4 rounded-xl text-xs text-slate-600 flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-slate-900 font-semibold mb-1">
-                <Clock className="w-4 h-4 text-[#0d5c46]" />
-                <span>ساعات مراجعه و مشاوره</span>
-              </div>
-              <p>{mockPharmacyInfo.workingHours.weekdays}</p>
-              <div className="flex items-center gap-2 text-emerald-800 font-medium mt-2">
-                <Phone className="w-4 h-4" />
-                <a href={`tel:${mockPharmacyInfo.phone}`} className="hover:underline">
-                  {mockPharmacyInfo.phone}
-                </a>
-              </div>
             </div>
           </div>
         </div>
