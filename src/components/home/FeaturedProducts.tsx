@@ -50,10 +50,10 @@ export default function FeaturedProducts() {
 
   return (
     <section className="py-8 bg-[#f8fcfb]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
 
-          {/* Left Side: Skincare Campaign Banner */}
+          {/* Left Side: Skincare Campaign Promo Banner */}
           <div className="lg:col-span-4 bg-gradient-to-br from-[#cbece2] via-[#e2f5f0] to-[#bde7dc] rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden border border-emerald-200/80 shadow-2xs min-h-[350px]">
             {/* Background Skincare Accent Image */}
             <div className="absolute top-0 left-0 w-1/2 h-full opacity-20 pointer-events-none">
@@ -76,14 +76,14 @@ export default function FeaturedProducts() {
             <div className="relative z-10 pt-4">
               <Link
                 href="/products?category=cat-skincare"
-                className="inline-flex items-center gap-1.5 bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2 rounded-full transition-all shadow-xs"
+                className="inline-flex items-center gap-1.5 bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2 rounded-full transition-all shadow-2xs"
               >
                 <span>مشاهده محصولات</span>
               </Link>
             </div>
           </div>
 
-          {/* Right Side: Best Sellers Cards */}
+          {/* Right Side: Best Sellers Section & Product Cards */}
           <div className="lg:col-span-8 flex flex-col justify-between space-y-4">
 
             {/* Header */}

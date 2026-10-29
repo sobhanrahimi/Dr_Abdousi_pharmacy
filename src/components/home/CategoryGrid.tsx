@@ -7,28 +7,10 @@ import { ArrowLeft } from 'lucide-react';
 export default function CategoryGrid() {
   const categories = [
     {
-      id: 'mother-child',
-      name: 'مادر و کودک',
-      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop',
-      href: '/products?category=cat-mother-child',
-    },
-    {
-      id: 'equipment',
-      name: 'تجهیزات پزشکی',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
-      href: '/products?category=cat-orthopedic-equipment',
-    },
-    {
-      id: 'supplements',
-      name: 'مکمل‌های غذایی',
-      image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800&auto=format&fit=crop',
-      href: '/products?category=cat-pharma-supplements',
-    },
-    {
-      id: 'skincare',
-      name: 'مراقبت و پوست و مو',
-      image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop',
-      href: '/products?category=cat-skincare',
+      id: 'wellness',
+      name: 'سلامت جنسی و تناسب اندام',
+      image: 'https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=800&auto=format&fit=crop',
+      href: '/products?category=cat-sports-supplements',
     },
     {
       id: 'cosmetics',
@@ -37,18 +19,36 @@ export default function CategoryGrid() {
       href: '/products?category=cat-cosmetics',
     },
     {
-      id: 'wellness',
-      name: 'سلامت جنسی و تناسب اندام',
-      image: 'https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=800&auto=format&fit=crop',
-      href: '/products?category=cat-sports-supplements',
+      id: 'skincare',
+      name: 'مراقبت و پوست و مو',
+      image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop',
+      href: '/products?category=cat-skincare',
+    },
+    {
+      id: 'supplements',
+      name: 'مکمل‌های غذایی',
+      image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800&auto=format&fit=crop',
+      href: '/products?category=cat-pharma-supplements',
+    },
+    {
+      id: 'equipment',
+      name: 'تجهیزات پزشکی',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop',
+      href: '/products?category=cat-orthopedic-equipment',
+    },
+    {
+      id: 'mother-child',
+      name: 'مادر و کودک',
+      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop',
+      href: '/products?category=cat-mother-child',
     },
   ];
 
   return (
     <section className="py-8 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
-        {/* Section Header */}
+        {/* Section Header matching reference */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
           <div>
             <h2 className="text-base sm:text-lg font-black text-[#006654]">
@@ -67,20 +67,20 @@ export default function CategoryGrid() {
           </Link>
         </div>
 
-        {/* Categories 6-Column Grid */}
+        {/* 6 Category Cards in 1 Row */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
           {categories.map((cat) => (
             <Link
               key={cat.id}
               href={cat.href}
-              className="group bg-gradient-to-b from-[#eef9f6] to-[#e4f4f0] hover:from-[#e1f5f0] hover:to-[#d2eee7] rounded-2xl p-3 text-center border border-emerald-100/80 transition-all hover:shadow-xs flex flex-col items-center justify-between min-h-[150px]"
+              className="group bg-gradient-to-b from-[#eef9f6] to-[#e4f4f0] hover:from-[#e1f5f0] hover:to-[#d2eee7] rounded-2xl p-3 text-center border border-emerald-100/80 transition-all hover:shadow-2xs flex flex-col items-center justify-between min-h-[150px]"
             >
               {/* Category Image */}
-              <div className="w-18 h-18 rounded-xl overflow-hidden bg-white p-1 shadow-2xs group-hover:scale-105 transition-transform duration-300 mb-2 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white p-1 shadow-2xs group-hover:scale-105 transition-transform duration-300 mb-2 flex items-center justify-center">
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover rounded-xl"
                 />
               </div>
 

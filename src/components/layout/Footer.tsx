@@ -15,27 +15,19 @@ import { mockPharmacyInfo } from '@/lib/data/mock-data';
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-emerald-100 text-slate-600 pt-8 pb-5 font-vazirmatn dir-rtl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
 
         {/* Upper Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-6 border-b border-slate-100">
 
           {/* Col 1: DAP Logo */}
           <div className="space-y-2">
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2">
               <img
                 src="/Dr_Abdousi_pharmacy/images/dap-logo.jpg"
-                alt="لوگوی DAP"
-                className="w-10 h-10 rounded-xl object-cover border border-emerald-100"
+                alt="DAP Logo"
+                className="h-10 w-auto object-contain"
               />
-              <div className="flex flex-col">
-                <span className="text-sm font-black text-[#006654]">
-                  داروخانه دکتر عبدوسی
-                </span>
-                <span className="text-[9px] font-bold text-slate-400 font-sans">
-                  DR. ABDOOSI PHARMACY
-                </span>
-              </div>
             </Link>
             <p className="text-[10px] text-slate-500 leading-relaxed pt-0.5">
               {mockPharmacyInfo.tagline}
