@@ -52,26 +52,26 @@ export default function TrustQualitySection() {
   ];
 
   return (
-    <section className="py-8 bg-white border-y border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
+    <section className="py-6 bg-white border-y border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
 
         {/* Horizontal 5 Benefits Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {benefits.map((item, idx) => {
             const IconComp = item.icon;
             return (
               <div
                 key={idx}
-                className="bg-[#f2faf7] p-3.5 rounded-2xl border border-emerald-100/80 flex items-center gap-3"
+                className="bg-[#f2faf7] p-3 rounded-xl border border-emerald-100/80 flex items-center gap-2.5"
               >
-                <div className="w-9 h-9 rounded-xl bg-[#006654] text-white flex items-center justify-center shrink-0 shadow-2xs">
+                <div className="w-8 h-8 rounded-lg bg-[#006654] text-white flex items-center justify-center shrink-0 shadow-2xs">
                   <IconComp className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800 leading-tight">
+                  <h4 className="text-[11px] font-bold text-slate-800 leading-tight">
                     {item.title}
                   </h4>
-                  <p className="text-[10px] text-slate-500 mt-0.5">
+                  <p className="text-[9px] text-slate-500 mt-0.5">
                     {item.desc}
                   </p>
                 </div>
@@ -81,12 +81,12 @@ export default function TrustQualitySection() {
         </div>
 
         {/* Newsletter / Customer Club Subscription Card */}
-        <div className="bg-gradient-to-r from-[#eef9f6] via-[#e4f4f0] to-[#eef9f6] p-6 rounded-3xl border border-emerald-200/80 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-right">
-            <h3 className="text-sm font-bold text-[#006654]">
+        <div className="bg-gradient-to-r from-[#eef9f6] via-[#e4f4f0] to-[#eef9f6] p-4 sm:p-5 rounded-2xl border border-emerald-200/80 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="space-y-0.5 text-center md:text-right">
+            <h3 className="text-xs font-bold text-[#006654]">
               عضویت در خبرنامه
             </h3>
-            <p className="text-xs text-slate-600">
+            <p className="text-[10px] text-slate-600">
               از جدیدترین تخفیف‌ها و محصولات باخبر شوید
             </p>
           </div>
@@ -97,11 +97,11 @@ export default function TrustQualitySection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="ایمیل خود را وارد کنید..."
-              className="flex-1 bg-white border border-slate-200 focus:border-[#006654] text-xs rounded-xl py-2.5 px-4 outline-none placeholder:text-slate-400"
+              className="flex-1 bg-white border border-slate-200 focus:border-[#006654] text-[11px] rounded-xl py-2 px-3 outline-none placeholder:text-slate-400"
             />
             <button
               type="submit"
-              className="bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-colors shrink-0 flex items-center gap-1.5"
+              className="bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors shrink-0 flex items-center gap-1"
             >
               <Send className="w-3.5 h-3.5" />
               <span>عضویت</span>
@@ -109,8 +109,8 @@ export default function TrustQualitySection() {
           </form>
 
           {subscribed && (
-            <div className="text-xs text-emerald-800 font-bold flex items-center gap-1">
-              <CheckCircle2 className="w-4 h-4 text-[#006654]" />
+            <div className="text-[11px] text-emerald-800 font-bold flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#006654]" />
               <span>ایمیل شما با موفقیت ثبت شد!</span>
             </div>
           )}

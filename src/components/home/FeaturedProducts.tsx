@@ -49,13 +49,13 @@ export default function FeaturedProducts() {
   ];
 
   return (
-    <section className="py-10 bg-[#f8fcfb]">
+    <section className="py-8 bg-[#f8fcfb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
 
           {/* Left Side: Skincare Campaign Banner */}
-          <div className="lg:col-span-4 bg-gradient-to-br from-[#cbece2] via-[#e2f5f0] to-[#bde7dc] rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden border border-emerald-200/80 shadow-xs min-h-[380px]">
-            {/* Decorative Skincare Image Background */}
+          <div className="lg:col-span-4 bg-gradient-to-br from-[#cbece2] via-[#e2f5f0] to-[#bde7dc] rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden border border-emerald-200/80 shadow-2xs min-h-[350px]">
+            {/* Background Skincare Accent Image */}
             <div className="absolute top-0 left-0 w-1/2 h-full opacity-20 pointer-events-none">
               <img
                 src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop"
@@ -64,35 +64,35 @@ export default function FeaturedProducts() {
               />
             </div>
 
-            <div className="relative z-10 space-y-4">
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#006654] leading-tight">
+            <div className="relative z-10 space-y-3">
+              <h3 className="text-xl font-black text-[#006654] leading-tight">
                 زیبایی و سلامت پوست با بهترین محصولات
               </h3>
-              <p className="text-xs font-semibold text-slate-600">
+              <p className="text-xs font-bold text-slate-600">
                 مراقبت حرفه‌ای، نتیجه ماندگار
               </p>
             </div>
 
-            <div className="relative z-10 pt-6">
+            <div className="relative z-10 pt-4">
               <Link
                 href="/products?category=cat-skincare"
-                className="inline-flex items-center gap-2 bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-md"
+                className="inline-flex items-center gap-1.5 bg-[#006654] hover:bg-[#004d3f] text-white text-xs font-bold px-5 py-2 rounded-full transition-all shadow-xs"
               >
                 <span>مشاهده محصولات</span>
               </Link>
             </div>
           </div>
 
-          {/* Right Side: Best Sellers Section & Product Cards */}
-          <div className="lg:col-span-8 flex flex-col justify-between space-y-6">
+          {/* Right Side: Best Sellers Cards */}
+          <div className="lg:col-span-8 flex flex-col justify-between space-y-4">
 
             {/* Header */}
             <div className="flex items-center justify-between pb-2 border-b border-slate-200">
               <div>
-                <h2 className="text-lg font-extrabold text-[#006654]">
+                <h2 className="text-base font-black text-[#006654]">
                   محصولات پرفروش
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-[11px] text-slate-500">
                   محصولاتی که بیشتر از همه انتخاب می‌شوند
                 </p>
               </div>
@@ -101,32 +101,32 @@ export default function FeaturedProducts() {
                 className="text-xs font-bold text-[#006654] hover:text-[#004d3f] flex items-center gap-1 transition-colors group"
               >
                 <span>مشاهده همه</span>
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
               </Link>
             </div>
 
             {/* 4 Best Seller Cards Row */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
               {bestSellers.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white rounded-2xl p-3.5 border border-slate-200/80 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between relative group"
+                  className="bg-white rounded-2xl p-3 border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between relative group"
                 >
                   {/* Top Badges & Wishlist Heart */}
-                  <div className="flex items-center justify-between w-full mb-2">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${item.badgeColor}`}>
+                  <div className="flex items-center justify-between w-full mb-1.5">
+                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${item.badgeColor}`}>
                       {item.badge}
                     </span>
                     <button
                       className="p-1 text-slate-300 hover:text-rose-500 transition-colors"
                       aria-label="افزودن به علاقه‌مندی"
                     >
-                      <Heart className="w-4 h-4" />
+                      <Heart className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
                   {/* Product Image */}
-                  <div className="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 mb-3 flex items-center justify-center p-2">
+                  <div className="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 mb-2 flex items-center justify-center p-1.5">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -135,14 +135,14 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Info & Price */}
-                  <div className="text-center space-y-1 mb-3">
-                    <h4 className="text-xs font-bold text-slate-800 line-clamp-1">
+                  <div className="text-center space-y-0.5 mb-2">
+                    <h4 className="text-[11px] font-bold text-slate-800 line-clamp-1">
                       {item.name}
                     </h4>
-                    <p className="text-[10px] text-slate-400 font-sans">
+                    <p className="text-[9px] text-slate-400 font-sans">
                       {item.brand}
                     </p>
-                    <p className="text-xs font-extrabold text-[#006654] pt-1">
+                    <p className="text-xs font-black text-[#006654] pt-0.5">
                       {item.price}
                     </p>
                   </div>
@@ -150,7 +150,7 @@ export default function FeaturedProducts() {
                   {/* Add to Cart Button */}
                   <Link
                     href={item.href}
-                    className="w-full bg-[#006654] hover:bg-[#004d3f] text-white text-[11px] font-bold py-2 rounded-xl transition-colors text-center block"
+                    className="w-full bg-[#006654] hover:bg-[#004d3f] text-white text-[10px] font-bold py-1.5 rounded-xl transition-colors text-center block"
                   >
                     افزودن به سبد خرید
                   </Link>
